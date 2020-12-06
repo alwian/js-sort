@@ -9,7 +9,7 @@
     <div class="menu-bar">
         <div class="menu-content">
             <ul class="sort-types">
-                <li class="refresh-btn">Refresh</li>
+                <li class="refresh-btn" id="refresh-btn">Refresh</li>
                 <li class="sort-type selected-sort">Merge</br>Sort</li>
                 <li class="sort-type">Quick</br>Sort</li>
                 <li class="sort-type">Selection</br>Sort</li>
@@ -17,16 +17,28 @@
                 <li class="sort-type">Bogo</br>Sort</li>
                 <li class="sort-type">Radix</br>Sort</li>
                 <li class="sort-type">Bubble</br>Sort</li>
-                <li class="sort-btn">Sort!</li>
+                <li class="sort-btn" id="sort-btn">Sort!</li>
             </ul>
         </div>
     </div>
 
     <script>
-        // Following code is used to highlight the selected algorithm.
+        let refreshBtn = document.getElementById("refresh-btn");
+        let sortBtn = document.getElementById("sort-btn");
         let selectedSort = 0;
         let sortTypes = document.getElementsByClassName("sort-type");
-        console.log(sortTypes);
+
+        // Generate a new array.
+        refreshBtn.addEventListener("click", function () {
+            console.log("Refresh array.")
+        });
+
+        // Start sorting the array.
+        sortBtn.addEventListener("click", function () {
+            console.log("Start sorting.")
+        });
+
+        // Following code is used to highlight the selected algorithm.
         for (let i = 0; i < sortTypes.length; i++) {
             sortTypes[i].addEventListener("click", function () {
                 sortTypes[selectedSort].className = "sort-type";
