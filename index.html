@@ -7,7 +7,33 @@
 </head>
 <body>
     <div class="menu-bar">
-
+        <div class="menu-content">
+            <ul class="sort-types">
+                <li class="refresh-btn">Refresh</li>
+                <li class="sort-type selected-sort">Merge</br>Sort</li>
+                <li class="sort-type">Quick</br>Sort</li>
+                <li class="sort-type">Selection</br>Sort</li>
+                <li class="sort-type">Insertion</br>Sort</li>
+                <li class="sort-type">Bogo</br>Sort</li>
+                <li class="sort-type">Radix</br>Sort</li>
+                <li class="sort-type">Bubble</br>Sort</li>
+                <li class="sort-btn">Sort!</li>
+            </ul>
+        </div>
     </div>
+
+    <script>
+        // Following code is used to highlight the selected algorithm.
+        let selectedSort = 0;
+        let sortTypes = document.getElementsByClassName("sort-type");
+        console.log(sortTypes);
+        for (let i = 0; i < sortTypes.length; i++) {
+            sortTypes[i].addEventListener("click", function () {
+                sortTypes[selectedSort].className = "sort-type";
+                selectedSort = i;
+                sortTypes[i].className = sortTypes[i].className + " selected-sort";
+            });
+        }
+    </script>
 </body>
 </html>

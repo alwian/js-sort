@@ -18,3 +18,52 @@ body {
     bottom: 0;
     position: fixed;
 }
+
+.menu-content {
+    width: 50%;
+    max-width: 1000px;
+    height: 100%;
+    margin: auto;
+    text-align: center;
+}
+.sort-types {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+}
+
+.refresh-btn {
+    display: inline-block;
+    line-height: 50px;
+    float: left;
+    margin: 0 0 0 10px;
+    color: #FFFFFF;
+    border-right: 3px solid #FFFFFF;
+    padding-right: 20px;
+}
+.sort-type {
+    display: inline-block;
+    line-height: 25px;
+    margin: 0 10px 0 10px;
+    color: #FFFFFF;
+    vertical-align: middle;
+}
+
+.sort-btn {
+    display: inline-block;
+    line-height: 50px;
+    color: #FFFFFF;
+    float: right;
+    margin: 0 10px 0 0;
+    border-left: 3px solid #FFFFFF;
+    padding-left: 20px;
+}
+
+.sort-type:hover {
+    cursor: pointer;
+}
+
+.selected-sort {
+    background-color: #484848;
+}
