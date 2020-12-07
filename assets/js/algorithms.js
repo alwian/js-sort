@@ -11,3 +11,19 @@ function bubbleSort(array) {
     }
     console.log(array)
 }
+
+function selectionSort(array) {
+    console.log(array);
+    for (let x = 0; x < array.length; x++) {
+        let min = x;
+        for (let y = x; y < array.length; y++) {
+            if (array[y] < array[min]) {
+                min = y;
+            }
+        }
+        let temp = array[min]
+        array[min] = array[x];
+        array[x] = temp;
+    }
+    console.log(array);
+}
