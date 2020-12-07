@@ -6,6 +6,11 @@
     <title>Sorting Visualiser</title>
 </head>
 <body>
+    <div class="content-wrapper">
+        <canvas id="sorting-area">
+
+        </canvas>
+    </div>
     <div class="menu-bar">
         <div class="menu-content">
             <ul class="sort-types">
@@ -21,16 +26,19 @@
             </ul>
         </div>
     </div>
-
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/drawing.js"></script>
     <script>
-        let refreshBtn = document.getElementById("refresh-btn");
-        let sortBtn = document.getElementById("sort-btn");
-        let selectedSort = 0;
-        let sortTypes = document.getElementsByClassName("sort-type");
+
+        let arrayLength = 20;
+        let array = [];
 
         // Generate a new array.
         refreshBtn.addEventListener("click", function () {
-            console.log("Refresh array.")
+            for (let x = 0; x < arrayLength; x++) {
+                array[x] = Math.floor((Math.random() * 100));
+            }
+            drawArray(array);
         });
 
         // Start sorting the array.
@@ -38,14 +46,7 @@
             console.log("Start sorting.")
         });
 
-        // Following code is used to highlight the selected algorithm.
-        for (let i = 0; i < sortTypes.length; i++) {
-            sortTypes[i].addEventListener("click", function () {
-                sortTypes[selectedSort].className = "sort-type";
-                selectedSort = i;
-                sortTypes[i].className = sortTypes[i].className + " selected-sort";
-            });
-        }
+        refreshBtn.click();
     </script>
 </body>
 </html>
