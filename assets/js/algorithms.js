@@ -41,3 +41,31 @@ function insertionSort(array) {
     }
     console.log(array);
 }
+
+function quickSort(array, start, end) {
+    if (end - start > 0) {
+        let lPointer = start;
+        let rPointer = end;
+        let pivot = array[end];
+
+        while (lPointer <= rPointer) {
+            while (array[lPointer] < pivot) {
+                lPointer++;
+            }
+
+            while (array[rPointer] > pivot) {
+                rPointer--;
+            }
+
+            if (lPointer <= rPointer) {
+                let temp = array[lPointer];
+                array[lPointer] = array[rPointer];
+                array[rPointer] = temp;
+                lPointer++;
+                rPointer--;
+            }
+        }
+        quickSort(array, start, rPointer);
+        quickSort(array, lPointer, end)
+    }
+}
