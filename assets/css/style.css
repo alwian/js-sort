@@ -60,10 +60,31 @@ body {
     padding-left: 20px;
 }
 
-.sort-type:hover, .refresh-btn:hover, .sort-btn:hover {
+.enabled-btn:hover {
     cursor: pointer;
+}
+
+.disabled-btn {
+    opacity: 0.2;
+}
+
+.disabled-btn:hover {
+    cursor: progress;
 }
 
 .selected-sort {
     background-color: #484848;
 }
+
+.content-wrapper {
+    width: 75%;
+    margin: auto;
+    height: calc(100vh - 50px);
+    overflow: hidden;
+}
+
+#sorting-area {
+    height: 100%;
+    width: 100%;
+}
+
