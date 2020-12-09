@@ -28,16 +28,17 @@
     <script src="assets/js/algorithms.js"></script>
     <script src="assets/js/menu.js"></script>
     <script src="assets/js/drawing.js"></script>
+    <script src="assets/js/Bar.js"></script>
     <script>
 
-        let arrayLength = 20;
+        let arrayLength = 30;
         let array = [];
 
         // Generate a new array.
         refreshBtn.addEventListener("click", function () {
             if (refreshBtn.classList.contains("enabled-btn")) {
                 for (let x = 0; x < arrayLength; x++) {
-                    array[x] = Math.floor((Math.random() * 100));
+                    array[x] = new Bar(Math.floor((Math.random() * 100)));
                 }
                 drawArray(array);
             }
@@ -64,9 +65,8 @@
                         bubbleSort(array);
                         break;
                 }
-                setTimeout(function () {
-                    toggleButtons(true);
-                }, 5000);
+                drawArray(array);
+                toggleButtons(true);
             }
         });
 

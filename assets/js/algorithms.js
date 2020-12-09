@@ -1,15 +1,27 @@
-function bubbleSort(array) {
-    console.log(array)
-    for (let x = 0; x < array.length; x++) {
+async function bubbleSort(array) {
+    for (let x = 1; x < array.length; x++) {
         for (let y = 0; y < array.length - x; y++) {
-            if (array[y] > array[y + 1]) {
-                let temp = array[y]
-                array[y] = array[y + 1]
-                array[y + 1] = temp
+            array[y].state = STATE.MOVING;
+            if (array[y].value > array[y + 1].value) {
+                array[y].state = STATE.SWAPPING;
+                array[y + 1].state = STATE.SWAPPING;
+                drawArray(array);
+                await new Promise(r => setTimeout(r, 300));
+                let temp = array[y];
+                array[y] = array[y + 1];
+                array[y + 1] = temp;
+                drawArray(array);
+                await new Promise(r => setTimeout(r, 300));
+                array[y].state = STATE.STATIONARY;
+                drawArray(array);
             }
+            array[y].state = STATE.STATIONARY;
         }
+        array[array.length - x].state = STATE.ORDERED;
+        drawArray(array);
     }
-    console.log(array)
+    array[0].state = STATE.ORDERED;
+    drawArray(array);
 }
 
 function selectionSort(array) {
