@@ -43,7 +43,23 @@
 
         // Start sorting the array.
         sortBtn.addEventListener("click", function () {
-            console.log("Start sorting.")
+            switch (selectedSort) {
+                case 0:
+                    mergeSort(array);
+                    break;
+                case 1:
+                    quickSort(array, 0, array.length - 1);
+                    break;
+                case 2:
+                    selectionSort(array);
+                    break;
+                case 3:
+                    insertionSort(array);
+                    break;
+                case 4:
+                    bubbleSort(array);
+                    break;
+            }
         });
 
         refreshBtn.click();
