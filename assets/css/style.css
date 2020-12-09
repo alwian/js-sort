@@ -60,8 +60,16 @@ body {
     padding-left: 20px;
 }
 
-.sort-type:hover, .refresh-btn:hover, .sort-btn:hover {
+.enabled-btn:hover {
     cursor: pointer;
+}
+
+.disabled-btn {
+    opacity: 0.2;
+}
+
+.disabled-btn:hover {
+    cursor: progress;
 }
 
 .selected-sort {

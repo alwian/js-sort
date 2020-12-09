@@ -14,13 +14,13 @@
     <div class="menu-bar">
         <div class="menu-content">
             <ul class="sort-types">
-                <li class="refresh-btn" id="refresh-btn">Refresh</li>
-                <li class="sort-type selected-sort">Merge</br>Sort</li>
-                <li class="sort-type">Quick</br>Sort</li>
-                <li class="sort-type">Selection</br>Sort</li>
-                <li class="sort-type">Insertion</br>Sort</li>
-                <li class="sort-type">Bubble</br>Sort</li>
-                <li class="sort-btn" id="sort-btn">Sort!</li>
+                <li class="refresh-btn enabled-btn" id="refresh-btn">Refresh</li>
+                <li class="sort-type enabled-btn selected-sort">Merge</br>Sort</li>
+                <li class="sort-type enabled-btn">Quick</br>Sort</li>
+                <li class="sort-type enabled-btn">Selection</br>Sort</li>
+                <li class="sort-type enabled-btn">Insertion</br>Sort</li>
+                <li class="sort-type enabled-btn">Bubble</br>Sort</li>
+                <li class="sort-btn enabled-btn" id="sort-btn">Sort!</li>
             </ul>
         </div>
     </div>
@@ -35,30 +35,38 @@
 
         // Generate a new array.
         refreshBtn.addEventListener("click", function () {
-            for (let x = 0; x < arrayLength; x++) {
-                array[x] = Math.floor((Math.random() * 100));
+            if (refreshBtn.classList.contains("enabled-btn")) {
+                for (let x = 0; x < arrayLength; x++) {
+                    array[x] = Math.floor((Math.random() * 100));
+                }
+                drawArray(array);
             }
-            drawArray(array);
         });
 
         // Start sorting the array.
         sortBtn.addEventListener("click", function () {
-            switch (selectedSort) {
-                case 0:
-                    mergeSort(array);
-                    break;
-                case 1:
-                    quickSort(array, 0, array.length - 1);
-                    break;
-                case 2:
-                    selectionSort(array);
-                    break;
-                case 3:
-                    insertionSort(array);
-                    break;
-                case 4:
-                    bubbleSort(array);
-                    break;
+            if (sortBtn.classList.contains("enabled-btn")) {
+                toggleButtons(false);
+                switch (selectedSort) {
+                    case 0:
+                        mergeSort(array);
+                        break;
+                    case 1:
+                        quickSort(array, 0, array.length - 1);
+                        break;
+                    case 2:
+                        selectionSort(array);
+                        break;
+                    case 3:
+                        insertionSort(array);
+                        break;
+                    case 4:
+                        bubbleSort(array);
+                        break;
+                }
+                setTimeout(function () {
+                    toggleButtons(true);
+                }, 5000);
             }
         });
 
