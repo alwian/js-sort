@@ -60,16 +60,53 @@ async function selectionSort(array) {
     console.log(array);
 }
 
-function insertionSort(array) {
+async function insertionSort(array) {
     console.log(array);
+    array[0].state = STATE.ORDERED;
+    drawArray(array);
     for (let x = 1; x < array.length; x++) {
-        let key = array[x];
+        let key  = array[x]; //new Bar(0);
+        //Object.assign(key, array[x]);
+        key.state = STATE.SELECTED;
+        drawArray(array);
+        await new Promise(r => setTimeout(r, 200));
+
         let y = x - 1;
-        while (y >= 0 && array[y] > key) {
-            array[y + 1] = array[y];
+        while (y >= 0 && array[y].value > key.value) {
+            if (y < x - 1) {
+                array[y + 1].state = STATE.ORDERED;
+            }
+            array[y].state = STATE.MOVING;
+            drawArray(array);
+            await new Promise(r => setTimeout(r, 400));
+            //array[y + 1] = array[y];
             y--;
         }
+
+        for (let z = x - 1; z > y; z--) {
+            array[z].state = STATE.SWAPPING;
+        }
+        drawArray(array)
+        await new Promise(r => setTimeout(r, 400));
+
+        for (let z = x - 1; z > y; z--) {
+            array[z + 1] = array[z];
+        }
+        drawArray(array);
+        await new Promise(r => setTimeout(r, 400));
+        for (let z = x; z > y + 1; z--) {
+            array[z].state =  STATE.ORDERED;
+        }
+        drawArray(array);
+        await new Promise(r => setTimeout(r, 400));
+
         array[y + 1] = key;
+        array[y + 1].state = STATE.SELECTED;
+        drawArray(array);
+        await new Promise(r => setTimeout(r, 400));
+        array[y + 1].state = STATE.ORDERED;
+        drawArray(array);
+        await new Promise(r => setTimeout(r, 400));
     }
     console.log(array);
 }
