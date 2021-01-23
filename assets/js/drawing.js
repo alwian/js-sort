@@ -14,7 +14,7 @@ function drawArray(array) {
 
     // Draw array.
     for (let x = 0; x < len; x++) {
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect(barWidth * x, height, width/len, -(array[x] * ((height * 0.5) / Math.max(...array))));
+        ctx.fillStyle = array[x].state.toString();
+        ctx.fillRect(barWidth * x, height, width/len, -(array[x].value * ((height * 0.5) / Math.max.apply(null, array.map(function (o) {return o.value})))));
     }
 }

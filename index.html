@@ -15,7 +15,6 @@
         <div class="menu-content">
             <ul class="sort-types">
                 <li class="refresh-btn enabled-btn" id="refresh-btn">Refresh</li>
-                <li class="sort-type enabled-btn selected-sort">Merge</br>Sort</li>
                 <li class="sort-type enabled-btn">Quick</br>Sort</li>
                 <li class="sort-type enabled-btn">Selection</br>Sort</li>
                 <li class="sort-type enabled-btn">Insertion</br>Sort</li>
@@ -28,45 +27,42 @@
     <script src="assets/js/algorithms.js"></script>
     <script src="assets/js/menu.js"></script>
     <script src="assets/js/drawing.js"></script>
+    <script src="assets/js/Bar.js"></script>
     <script>
 
-        let arrayLength = 20;
+        let arrayLength = 30;
         let array = [];
 
         // Generate a new array.
         refreshBtn.addEventListener("click", function () {
             if (refreshBtn.classList.contains("enabled-btn")) {
                 for (let x = 0; x < arrayLength; x++) {
-                    array[x] = Math.floor((Math.random() * 100));
+                    array[x] = new Bar(Math.floor((Math.random() * 100)));
                 }
                 drawArray(array);
             }
         });
 
         // Start sorting the array.
-        sortBtn.addEventListener("click", function () {
+        sortBtn.addEventListener("click", async function () {
             if (sortBtn.classList.contains("enabled-btn")) {
                 toggleButtons(false);
                 switch (selectedSort) {
                     case 0:
-                        mergeSort(array);
+                        await quickSort(array, 0, array.length - 1);
                         break;
                     case 1:
-                        quickSort(array, 0, array.length - 1);
+                        await selectionSort(array);
                         break;
                     case 2:
-                        selectionSort(array);
+                        await insertionSort(array);
                         break;
                     case 3:
-                        insertionSort(array);
-                        break;
-                    case 4:
-                        bubbleSort(array);
+                        await bubbleSort(array);
                         break;
                 }
-                setTimeout(function () {
-                    toggleButtons(true);
-                }, 5000);
+                drawArray(array);
+                toggleButtons(true);
             }
         });
 
