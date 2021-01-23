@@ -15,7 +15,6 @@
         <div class="menu-content">
             <ul class="sort-types">
                 <li class="refresh-btn enabled-btn" id="refresh-btn">Refresh</li>
-                <li class="sort-type enabled-btn selected-sort">Merge</br>Sort</li>
                 <li class="sort-type enabled-btn">Quick</br>Sort</li>
                 <li class="sort-type enabled-btn">Selection</br>Sort</li>
                 <li class="sort-type enabled-btn">Insertion</br>Sort</li>
@@ -45,24 +44,21 @@
         });
 
         // Start sorting the array.
-        sortBtn.addEventListener("click", function () {
+        sortBtn.addEventListener("click", async function () {
             if (sortBtn.classList.contains("enabled-btn")) {
                 toggleButtons(false);
                 switch (selectedSort) {
                     case 0:
-                        mergeSort(array);
+                        await quickSort(array, 0, array.length - 1);
                         break;
                     case 1:
-                        quickSort(array, 0, array.length - 1);
+                        await selectionSort(array);
                         break;
                     case 2:
-                        selectionSort(array);
+                        await insertionSort(array);
                         break;
                     case 3:
-                        insertionSort(array);
-                        break;
-                    case 4:
-                        bubbleSort(array);
+                        await bubbleSort(array);
                         break;
                 }
                 drawArray(array);

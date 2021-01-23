@@ -111,32 +111,43 @@ async function insertionSort(array) {
     console.log(array);
 }
 
-function quickSort(array, start, end) {
+async function quickSort(array, start, end) {
     if (end - start > 0) {
         let lPointer = start;
         let rPointer = end;
         let pivot = array[end];
 
         while (lPointer <= rPointer) {
-            while (array[lPointer] < pivot) {
+            while (array[lPointer].value < pivot.value) {
                 lPointer++;
             }
 
-            while (array[rPointer] > pivot) {
+            while (array[rPointer].value > pivot.value) {
                 rPointer--;
             }
 
             if (lPointer <= rPointer) {
+                array[lPointer].state = STATE.SWAPPING;
+                array[rPointer].state = STATE.SWAPPING;
+                drawArray(array);
+                await new Promise(r => setTimeout(r, 400));
                 let temp = array[lPointer];
                 array[lPointer] = array[rPointer];
                 array[rPointer] = temp;
+                array[lPointer].state = STATE.STATIONARY;
+                array[rPointer].state = STATE.STATIONARY;
+                drawArray(array);
+                await new Promise(r => setTimeout(r, 400));
                 lPointer++;
                 rPointer--;
             }
         }
-        quickSort(array, start, rPointer);
-        quickSort(array, lPointer, end)
+        await quickSort(array, start, rPointer);
+        await quickSort(array, lPointer, end)
     }
+    array[end].state = STATE.ORDERED;
+    drawArray(array);
+    await new Promise(r => setTimeout(r, 400));
 }
 
 function mergeSort(array) {
