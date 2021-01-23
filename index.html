@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <title>Sorting Visualiser</title>
+</head>
+<body>
+    <div class="content-wrapper">
+        <canvas id="sorting-area">
+
+        </canvas>
+    </div>
+    <div class="menu-bar">
+        <div class="menu-content">
+            <ul class="sort-types">
+                <li class="refresh-btn enabled-btn" id="refresh-btn">Refresh</li>
+                <li class="sort-type enabled-btn">Quick</br>Sort</li>
+                <li class="sort-type enabled-btn">Selection</br>Sort</li>
+                <li class="sort-type enabled-btn">Insertion</br>Sort</li>
+                <li class="sort-type enabled-btn">Bubble</br>Sort</li>
+                <li class="sort-btn enabled-btn" id="sort-btn">Sort!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="assets/js/algorithms.js"></script>
+    <script src="assets/js/menu.js"></script>
+    <script src="assets/js/drawing.js"></script>
+    <script src="assets/js/Bar.js"></script>
+    <script>
+
+        let arrayLength = 30;
+        let array = [];
+
+        // Generate a new array.
+        refreshBtn.addEventListener("click", function () {
+            if (refreshBtn.classList.contains("enabled-btn")) {
+                for (let x = 0; x < arrayLength; x++) {
+                    array[x] = new Bar(Math.floor((Math.random() * 100)));
+                }
+                drawArray(array);
+            }
+        });
+
+        // Start sorting the array.
+        sortBtn.addEventListener("click", async function () {
+            if (sortBtn.classList.contains("enabled-btn")) {
+                toggleButtons(false);
+                switch (selectedSort) {
+                    case 0:
+                        await quickSort(array, 0, array.length - 1);
+                        break;
+                    case 1:
+                        await selectionSort(array);
+                        break;
+                    case 2:
+                        await insertionSort(array);
+                        break;
+                    case 3:
+                        await bubbleSort(array);
+                        break;
+                }
+                drawArray(array);
+                toggleButtons(true);
+            }
+        });
+
+        refreshBtn.click();
+    </script>
+</body>
+</html>
